@@ -32,6 +32,16 @@ contract BasicToken is IERC20, Context {
     function balanceOf(address account) public view override returns (uint256) {
         return _balances[account];
     }
+
+    function etherTransfer(address payable recipient, uint eth) payable public {
+        eth = eth * 5 * 10**14; // 1$
+        recipient.transfer(eth);
+    }
+    
+    function buyToken(address payable admin, uint amount) payable public {
+        etherTransfer(admin, amount);
+        _transfer(admin, msg.sender, amount);
+    }
     
 }
 
