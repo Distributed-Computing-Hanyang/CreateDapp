@@ -1,0 +1,24 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+hr {
+	color:red;
+}
+
+#adminToken{
+  color: blue;
+}
+
+#login {
+  border-color: #00B7FF;
+}
+
+#getToken{
+  color: green;
+}

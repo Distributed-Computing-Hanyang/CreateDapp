@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  </head>
+  <body>
+    <h4>Admin Token : <a id="adminToken"></a></h4>
+    <h4>Account Token : <a id="accountToken"></a></h4>
+    <h4>Account : <input type="text" size="60" name="login" id="login" value="" placeholder="Enter Account address" /></h4><br> 
+
+    <hr>
+    
+      <h4>Get Token Balance</h4>
+      <input type="text" size="60" name="account1" id="account1" value="" placeholder="Enter Account address" /><br>
+      <button type="submit" class="primary" onclick="getUserToken()">get token</button>
+      <h4>Token : <a id="getToken"></a></h4>
+    
+    <hr>
+
+      <h4>Earn Token</h4>
+      <input type="text" size="60" name="getAmount" id="getAmount" value="" placeholder="Enter Amount of Tokens" /><br>
+      <button type="submit" class="primary" onclick="earnToken()">earn token</button>
+      
+    <hr>
+    
+    	<h4>Transfer Token</h4>
+    	<input type="text" size="60" name="account2" id="account2" value="" placeholder="Enter Account Address" /><br>
+      <input type="text" size="60" name="sendAmount" id="sendAmount" value="" placeholder="Enter Amount of Tokens" /><br>
+    	<button type="submit" class="primary" onclick="transferToken()">transfer token</button>
+    
+      
+    <script src="/javascripts/web3interface.js"></script>
+  </body>
+</html>
