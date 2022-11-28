@@ -163,7 +163,7 @@ const getUserToken = async (address) => {
 }
 
 const getAccountToken = async function() {
-	let anotherAccount = await document.getElementById("anotherAccount").value;
+	let anotherAccount = document.getElementById("anotherAccount").value;
 	let accountBalance = await contract.methods.balanceOf(anotherAccount).call({from:anotherAccount});
 	document.getElementById('accountToken').text = accountBalance;
 }
@@ -175,8 +175,8 @@ document.getElementById("currentUser").addEventListener("input", async (e)=>{
 });
 
 const earnToken = async function() {
-	let currentUser = await document.getElementById("currentUser").value;
-	let amountToEarn = await document.getElementById("amountToEarn").value;
+	let currentUser = document.getElementById("currentUser").value;
+	let amountToEarn = document.getElementById("amountToEarn").value;
 
 	console.log(currentUser)
 	console.log(amountToEarn)
@@ -187,9 +187,9 @@ const earnToken = async function() {
 }
 
 const transferToken = async function() {
-	let currentUser = await document.getElementById("currentUser").value;
-	let accountToSend = await document.getElementById("accountToSend").value;
-	let amountToSend = await document.getElementById("amountToSend").value;
+	let currentUser = document.getElementById("currentUser").value;
+	let accountToSend = document.getElementById("accountToSend").value;
+	let amountToSend = document.getElementById("amountToSend").value;
 
 	console.log(currentUser)
 	console.log(accountToSend)
