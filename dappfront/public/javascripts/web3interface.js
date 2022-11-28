@@ -1,4 +1,4 @@
-var web3 = new Web3();
+const web3 = new Web3();
 web3.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'));
 web3.eth.handleRevert = true;
 
@@ -148,17 +148,17 @@ document.addEventListener("DOMContentLoaded", () => {
   startDapp();
 });
 
-var startDapp = async function() {
+const startDapp = async function() {
 	getAdminToken();
 }
 
-var getAdminToken = async function() {
-	var adminBalance = await contract.methods.balanceOf(admin_address).call({from:admin_address});
+const getAdminToken = async function() {
+	let adminBalance = await contract.methods.balanceOf(admin_address).call({from:admin_address});
 	document.getElementById('adminToken').text = adminBalance;
 }
 
 document.getElementById("login").addEventListener("input", async (e)=>{
-	var address = await e.target.value;
+	let address = await e.target.value;
   	console.log(address);
 	html = "";
 	html += await contract.methods.balanceOf(address).call({from:address});
@@ -167,8 +167,8 @@ document.getElementById("login").addEventListener("input", async (e)=>{
 });
 
 
-var getUserToken = async function() {
-	var address = await document.getElementById("account1").value;
+const getUserToken = async function() {
+	let address = await document.getElementById("account1").value;
 	html = "";
 	html += await contract.methods.balanceOf(address).call({from:address});
 	document.getElementById('getToken').innerHTML = html;
@@ -176,29 +176,29 @@ var getUserToken = async function() {
 }
 
 
-var earnToken = async function() {
-	var address = await document.getElementById("login").value;
-	var getAmount = await document.getElementById("getAmount").value;
-	console.log(getAmount)
+const earnToken = async function() {
+	let address = await document.getElementById("login").value;
+	let amountToGet = await document.getElementById("amountToGet").value;
+	console.log(amountToGet)
 	console.log(address)
-	await contract.methods.buyToken(admin_address, getAmount).send({from : address, gas:5000000, value:getAmount * 5 * Math.pow(10, 14)});
+	await contract.methods.buyToken(admin_address, amountToGet).send({from : address, gas:5000000, value:amountToGet * 5 * Math.pow(10, 14)});
 	var userBalance = await contract.methods.balanceOf(address).call({from:address});
 	document.getElementById('accountToken').text = userBalance;
 	getAdminToken();
 }
 
-var transferToken = async function() {
-	var address1 = await document.getElementById("login").value;
-	var address2 = await document.getElementById("account2").value;
-	var sendAmount = await document.getElementById("sendAmount").value;
-	console.log(sendAmount)
+const transferToken = async function() {
+	let address1 = await document.getElementById("login").value;
+	let address2 = await document.getElementById("account2").value;
+	let amountToSend = await document.getElementById("amountToSend").value;
+	console.log(amountToSend)
 	console.log(address1)
 	console.log(address2)
-	await contract.methods.transfer(address2, sendAmount).send({from : address1, gas:3000000}).catch(err=>{
+	await contract.methods.transfer(address2, amountToSend).send({from : address1, gas:3000000}).catch(err=>{
 	    // 1 $
 	    console.error(err);
   	});
-	var userBalance = await contract.methods.balanceOf(address1).call({from:address1});
+	let userBalance = await contract.methods.balanceOf(address1).call({from:address1});
 	document.getElementById('accountToken').text = userBalance;
 	getAdminToken();
 	getUserToken();
