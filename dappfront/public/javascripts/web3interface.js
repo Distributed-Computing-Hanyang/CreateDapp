@@ -144,9 +144,9 @@ const abi = [
 
 let contract = new web3.eth.Contract(abi, contract_address);
 
-$(document).ready(function() {
-	startDapp();
-})
+document.addEventListener("DOMContentLoaded", () => {
+  startDapp();
+});
 
 var startDapp = async function() {
 	getAdminToken();
@@ -154,12 +154,12 @@ var startDapp = async function() {
 
 var getAdminToken = async function() {
 	var adminBalance = await contract.methods.balanceOf(admin_address).call({from:admin_address});
-	$('#adminToken').text(adminBalance);
+	document.getElementById('adminToken').text = adminBalance;
 }
 
 document.getElementById("login").addEventListener("input", async (e)=>{
 	var address = await e.target.value;
-  console.log(address);
+  	console.log(address);
 	html = "";
 	html += await contract.methods.balanceOf(address).call({from:address});
 	document.getElementById('accountToken').innerHTML = html;
@@ -183,7 +183,7 @@ var earnToken = async function() {
 	console.log(address)
 	await contract.methods.buyToken(admin_address, getAmount).send({from : address, gas:5000000, value:getAmount * 5 * Math.pow(10, 14)});
 	var userBalance = await contract.methods.balanceOf(address).call({from:address});
-	$('#accountToken').text(userBalance);
+	document.getElementById('accountToken').text = userBalance;
 	getAdminToken();
 }
 
@@ -195,11 +195,11 @@ var transferToken = async function() {
 	console.log(address1)
 	console.log(address2)
 	await contract.methods.transfer(address2, sendAmount).send({from : address1, gas:3000000}).catch(err=>{
-    // 1 $
-    console.error(err);
-  });
+	    // 1 $
+	    console.error(err);
+  	});
 	var userBalance = await contract.methods.balanceOf(address1).call({from:address1});
-	$('#accountToken').text(userBalance);
+	document.getElementById('accountToken').text = userBalance;
 	getAdminToken();
 	getUserToken();
 }
