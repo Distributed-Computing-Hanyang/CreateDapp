@@ -7,28 +7,28 @@
   </head>
   <body>
     <h4>Admin Token : <a id="adminToken"></a></h4>
-    <h4>Account Token : <a id="accountToken"></a></h4>
-    <h4>Account : <input type="text" size="60" name="login" id="login" value="" placeholder="Enter Account address" /></h4><br> 
+    <h4>Account Token : <a id="userToken"></a></h4>
+    <h4>Account : <input type="text" size="60" name="currentUser" id="currentUser" value="" placeholder="Enter Account address" /></h4><br> 
     
     <hr>
 
       <h4>Earn Token</h4>
-      <input type="text" size="60" name="amountToGet" id="amountToGet" value="" placeholder="Enter Amount of Tokens" /><br>
+      <input type="text" size="60" name="amountToEarn" id="amountToEarn" value="" placeholder="Enter Amount of Tokens" /><br>
       <button type="submit" class="primary" onclick="earnToken()">earn token</button>
       
     <hr>
     
     	<h4>Transfer Token</h4>
-    	<input type="text" size="60" name="account2" id="account2" value="" placeholder="Enter Account Address" /><br>
+    	<input type="text" size="60" name="accountToSend" id="accountToSend" value="" placeholder="Enter Account Address" /><br>
       <input type="text" size="60" name="amountToSend" id="amountToSend" value="" placeholder="Enter Amount of Tokens" /><br>
      	<button type="submit" class="primary" onclick="transferToken()">transfer token</button>
 
     <hr>
     
       <h4>Get Token Balance</h4>
-      <input type="text" size="60" name="account1" id="account1" value="" placeholder="Enter Account address" /><br>
+      <input type="text" size="60" name="anotherAccount" id="anotherAccount" value="" placeholder="Enter Account address" /><br>
       <button type="submit" class="primary" onclick="getUserToken()">get token</button>
-      <h4>Token : <a id="getToken"></a></h4>
+      <h4>Token : <a id="accountToken"></a></h4>
       
     <script src="/javascripts/web3interface.js"></script>
   </body>
