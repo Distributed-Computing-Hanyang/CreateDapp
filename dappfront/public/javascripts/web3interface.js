@@ -195,7 +195,6 @@ const transferToken = async function() {
 	console.log(currentUser)
 	console.log(accountToSend)
 	await contract.methods.transfer(accountToSend, amountToSend).send({from : currentUser, gas:3000000}).catch(err=>{
-	    // 1 $
 	    console.error(err);
   	});
 	let userBalance = await contract.methods.balanceOf(currentUser).call({from:currentUser});
