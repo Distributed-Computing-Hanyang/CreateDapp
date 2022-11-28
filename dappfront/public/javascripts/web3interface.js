@@ -158,21 +158,20 @@ const getAdminToken = async function() {
 }
 
 document.getElementById("currentUser").addEventListener("input", async (e)=>{
-	let address = await e.target.value;
-  	console.log(address);
-	html = "";
-	html += await contract.methods.balanceOf(address).call({from:address});
-	document.getElementById('userToken').innerHTML = html;
-	getAdminToken();
+	let currentUser = await e.target.value;
+	console.log(currentUser);
+	getUserToken(currentUser);
 });
 
+const getUserToken = async (address) => {
+	let userBalance = await contract.methods.balanceOf(address).call({from:address});
+	document.getElementById('userToken').text = userBalance;
+}
 
-const getUserToken = async function() {
+const getAccountToken = async function() {
 	let anotherAccount = await document.getElementById("anotherAccount").value;
-	html = "";
-	html += await contract.methods.balanceOf(anotherAccount).call({from:anotherAccount});
-	document.getElementById('accountToken').innerHTML = html;
-	getAdminToken();
+	let accountBalance = await contract.methods.balanceOf(anotherAccount).call({from:anotherAccount});
+	document.getElementById('accountToken').text = accountBalance;
 }
 
 
@@ -181,9 +180,8 @@ const earnToken = async function() {
 	let amountToEarn = await document.getElementById("amountToEarn").value;
 	console.log(amountToEarn)
 	console.log(currentUser)
-	await contract.methods.buyToken(admin_address, amountToEarn).send({from : currentUser, gas:5000000, value:amountToEarn * 5 * Math.pow(10, 14)});
-	var userBalance = await contract.methods.balanceOf(currentUser).call({from:currentUser});
-	document.getElementById('userToken').text = userBalance;
+	await contract.methods.buyToken(admin_address, amountToEarn).send({from : currentUser, gas:5000000, value:amountToEarn * 5 * Math.pow(10, 14)}); // about 1 $
+	getUserToken(currentUser);
 	getAdminToken();
 }
 
@@ -197,8 +195,7 @@ const transferToken = async function() {
 	await contract.methods.transfer(accountToSend, amountToSend).send({from : currentUser, gas:3000000}).catch(err=>{
 	    console.error(err);
   	});
-	let userBalance = await contract.methods.balanceOf(currentUser).call({from:currentUser});
-	document.getElementById('userToken').text = userBalance;
+	getUserToken(currentUser);
 	getAdminToken();
-	getUserToken();
+	getAccountToken();
 }
